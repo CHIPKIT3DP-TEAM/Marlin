@@ -23,6 +23,8 @@
   #define HAL_PLATFORM HAL_STM32
 #elif defined(ARDUINO_ARCH_ESP32)
   #define HAL_PLATFORM HAL_ESP32
+#elif defined(ARDUINO_ARCH_PIC32) //@zawata
+  #define HAL_PLATFORM HAL_PIC32
 #else
   #error "Unsupported Platform!"
 #endif

@@ -414,6 +414,9 @@
 #elif MB(ESP32)
   #include "pins_ESP32.h"
 
+#elif MB(SHIELD3DP) //@zawata
+  #include  "pins_shield3DP.h"
+
 #else
   #error "Unknown MOTHERBOARD value set in Configuration.h"
 #endif

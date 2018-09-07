@@ -244,6 +244,11 @@
 //
 #define BOARD_ESP32            1900
 
+//
+// Shield3DP
+//
+#define BOARD_SHIELD3DP        2000 //@zawata
+
 #define MB(board) (defined(BOARD_##board) && MOTHERBOARD==BOARD_##board)
 
 #endif // __BOARDS_H

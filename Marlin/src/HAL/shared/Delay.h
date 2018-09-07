@@ -133,6 +133,14 @@
     }
   }
 
+#elif defined(ARDUINO_ARCH_PIC32) //TODO: find the proper macro for PIC32
+//@zawata
+  FORCE_INLINE static void DELAY_CYCLES(uint32_t x) {
+    uint32_t stop = _CP0_GET_COUNT()+x;
+    while((uint32_t)_CP0_GET_COUNT() < stop) asm("nop");
+
+  }
+
 #else
 
   #error "Unsupported MCU architecture"
