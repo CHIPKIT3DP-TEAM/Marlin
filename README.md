@@ -63,6 +63,7 @@ Each of these can be found by searching the codebase for "@zawata" which has bee
 - Watchdog Timer Implemented
 - ADC interface implemented
 - Timers Implemented
+- EEPROM Interface Implemented
 
 ## General Notes
 - Enstop Interrupts
