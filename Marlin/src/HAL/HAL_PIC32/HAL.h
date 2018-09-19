@@ -33,7 +33,7 @@
 
 #include "Board_Defs.h"     //Contains definitions specific to the board we are using
 #include <HardwareSerial.h> //Serial Stuff
-#include <DSPI.h>
+#include <DSPI.h>           //SPI Stuff
 
 #include "fastio.h"         //for IO-related macros
 #include "spi_pins.h"       //to Define the pins used for SPI
