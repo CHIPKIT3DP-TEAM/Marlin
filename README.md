@@ -5,8 +5,7 @@ Compilation is currently only supported through the Arduino IDE.
 
 The project can be opened in the Arduino IDE via Marlin/Marlin.ino and compiled or uploaded that way. The board must be changed to the chipkit-wifire or Marlin may build for a different device
 
-The Configuration files used the compile the HAL have also not been uploaded as they are too specific to the 3d printer.
-The only necessary change to be made thus far is to change the board used to `BOARD_SHIELD3DP` on line 136(ish). You can also search for `MOTHERBOARD` and you should be able to find it
+The Configuration files used the compile the HAL have also not been uploaded as they are too specific to the 3d printer. See General Notes
 
 ## Git Stuff
 The upstream branch is updated incredibly often(approx. once per hour). To rebase our changes, the following commands are used
@@ -47,9 +46,6 @@ Each of these can be found by searching the codebase for "@zawata" which has bee
 - Timers
     - Review
     - Testing
-- I2C
-    - Implementation
-    - Do we have any devices requiring I2C?
 - Endstop Interrupts
     - Testing
 - Displays
@@ -81,7 +77,19 @@ Each of these can be found by searching the codebase for "@zawata" which has bee
     - Implemented
 
 ## General Notes
+- I2C Support
+    - Marlin contains a native implementation for I2C eeproms(because apparently theyre universal). It also may include implementations for communicating with a couple stepper drivers. Neither of these features are relevant to us and no other HAL includes any I2C communicatio implementations so i don't think we need it either, other declaring I2C compatible pins.
 - SPI Support
     - Contrary to logical SPI Design assumptions, each SPI-capable device on the Wi-Fire is on it's own SPI bus. Because of the way Marlin is designed, a single API handles all SPI communication without differentiation for devices. This poses a problem in that we won't know at call time which SPI bus we are supposed to use. It is for this reason we can only use a single SPI bus. Luckily there seems to be only 2 SPI-capable devices that marlin supports, the MAX6675 thermocouple, and SD Cards. We aren't using that thermocouple so we only need our spi interface to support SD Cards.
 - PlatformIO Support
     - PlatformIO support has been attempted but appears to fail on Windows as the pic32-g++ compiler ignores backslashes as folder separators. To fix this, we will likely need to send a bug report in [here](https://github.com/platformio/platform-microchippic32) telling them not to use python's `os.path.join` function and instead join with a forward slash universally.
+- Configuration
+    - The Authors of marlin prefer to keep th General Configuration in the root directory to a minimal set of features for debug and development purposes. In keeping with that philosphy Heres a summary of changes for enabling various hardware features.
+        - PIC32 HAL
+            - L135: MOTHERBOARD = BOARD_SHIELD3DP
+        - EEPROM
+            - L1264: EEPROM_SETTINGS
+        - Endstop Iterrupts
+            - L603: ENDSTOP_INTERRUPTS_FEATURE
+        - SD Card
+            - L1466: SDSUPPORT
