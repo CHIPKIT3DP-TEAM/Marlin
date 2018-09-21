@@ -44,17 +44,14 @@ Each of these can be found by searching the codebase for "@zawata" which has bee
     - Testing
 - ADC Interface
     - Testing
-- Timers 
+- Timers
     - Review
-    - Testing
-- EEPROM Interface 
     - Testing
 - I2C
     - Implementation
     - Do we have any devices requiring I2C?
-- Endstop Interrupts 
-    - Switch to Pin Change Notice Interrupts
-    - See General Notes
+- Endstop Interrupts
+    - Testing
 - Displays
 - Various TODOs
 - Corrected PlatformIO support
@@ -79,11 +76,11 @@ Each of these can be found by searching the codebase for "@zawata" which has bee
 - EEPROM Interface 
     - Implemented
     - Tested
+- Endstop Interrupts
+    - Researched
+    - Implemented
 
 ## General Notes
-- Endstop Interrupts
-    - This feature is mostly infeasible on the pic32. PIC32s only seem to have 5 external interrupts. The device is incredibly fast relative to the atmega328 Marlin was designed for so constant polling will not be as much of an issue as it would on slower devices.
-    - This may actually be possible using "Change Notice" Pins but I'm unsure of how they work. there seems to be many more of them however and they seem to be able to fire an interrupt.
 - SPI Support
     - Contrary to logical SPI Design assumptions, each SPI-capable device on the Wi-Fire is on it's own SPI bus. Because of the way Marlin is designed, a single API handles all SPI communication without differentiation for devices. This poses a problem in that we won't know at call time which SPI bus we are supposed to use. It is for this reason we can only use a single SPI bus. Luckily there seems to be only 2 SPI-capable devices that marlin supports, the MAX6675 thermocouple, and SD Cards. We aren't using that thermocouple so we only need our spi interface to support SD Cards.
 - PlatformIO Support
